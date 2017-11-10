@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='neuroevolution',
-      version='0.1.3',
+      version='0.1.4',
       description='Neuroevolution algorithms for your Keras model.',
       url='https://github.com/dpalmisano/snippets',
       author='Davide Palmisano',

@@ -1,9 +1,6 @@
 import random
 from random import randint
 
-from .utils import bin_to_float
-from .utils import float_to_bin
-
 class Gene:
     
     def __init__(self, name, value):
