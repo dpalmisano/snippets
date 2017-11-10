@@ -12,7 +12,7 @@ def select(population):
 def party(population):
     new_born = set({})
     for pair in combinations(population, 2):
-        breed_result = breed(pair[0], pair[1], 0.0)
+        breed_result = breed(pair[0], pair[1], 0.95)
         new_born.add(breed_result['child_1'])
         new_born.add(breed_result['child_2'])
     return new_born

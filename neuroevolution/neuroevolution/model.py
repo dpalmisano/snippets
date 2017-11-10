@@ -1,3 +1,4 @@
+import random
 from random import randint
 
 from .utils import bin_to_float
@@ -24,47 +25,31 @@ class Gene:
 
 class ContinuosGene(Gene):
     
-    def from_binary(name, binary):
-        return ContinuosGene(name, bin_to_float(binary))
+    def __randomise(value):
+        return value + random.uniform(-value/2, value/2)
     
     def __init__(self, name, value):
         Gene.__init__(self, name, value)
         
-    def binary(self):
-        return float_to_bin(self.value)
-        
     def mutate(self):
-        binary_list = list(self.binary())
-        index_to_mutate = randint(0, len(binary_list) - 1)
-        binary_list[index_to_mutate] = '0' if binary_list[index_to_mutate] == '1' else '1'
-        return ContinuosGene.from_binary(self.name, ''.join(binary_list))
+        return ContinuosGene(self.name, ContinuosGene.__randomise(self.value))
 
     def __str__(self):
-        return "[{},{},{}]".format(self.name, self.value, self.binary())
+        return "[{},{}]".format(self.name, self.value)
 
 
 class DiscreteGene(Gene):
-    
-    def from_binary(name, binary, base):
-        return DiscreteGene(name, base[int(binary, 2)], base)
     
     def __init__(self, name, value, base):
         Gene.__init__(self, name, value)
         self.base = base
     
-    def binary(self):
-        value_bin = bin(self.base.index(self.value))
-        return value_bin[2:].zfill(len(self.base).bit_length() - 1)
-    
     def mutate(self):
-        binary_list = list(self.binary())
-        index_to_mutate = randint(0, len(binary_list) - 1)
-        binary_list[index_to_mutate] = '0' if binary_list[index_to_mutate] == '1' else '1'
-        index = int(''.join(binary_list), 2)
+        index = randint(0, len(self.base) - 1)
         return DiscreteGene(self.name, self.base[index], self.base)
     
     def __str__(self):
-        return "[{},{},{}]".format(self.name, self.value, self.binary())
+        return "[{},{}]".format(self.name, self.value)
 
 
 class Chromosome:
