@@ -1,3 +1,5 @@
-from .model import Gene
+from .model import DiscreteGene
+from .model import ContinuosGene
 from .model import Chromosome
-from .model import breed 
+from .model import Dna
+from .evolution import evolve 
