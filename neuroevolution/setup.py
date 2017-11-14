@@ -8,4 +8,5 @@ setup(name='neuroevolution',
       author_email='dpalmisano@gmail.com',
       license='MIT',
       packages=['neuroevolution'],
+      install_requires=['keras'],
       zip_safe=False)
