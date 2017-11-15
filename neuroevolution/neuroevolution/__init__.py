@@ -5,3 +5,4 @@ from .model import Chromosome
 from .model import Dna
 from .evolution import evolve
 from .synthesis import Mitochondrion
+from .utils import random_fitting
