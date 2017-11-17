@@ -3,6 +3,7 @@ from .model import CategoricalGene
 from .model import ContinuosGene
 from .model import Chromosome
 from .model import Dna
-from .evolution import evolve
+from .evolution import party
 from .synthesis import Mitochondrion
+from .gymnasium import Gymnasium
 from .utils import random_fitting

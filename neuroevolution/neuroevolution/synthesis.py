@@ -48,7 +48,7 @@ class Mitochondrion:
     def __layer_synthesis(allosome, genes, input_size = None):
         return Mitochondrion.__switch(allosome.get_value(), genes, input_size)
     
-    def synthesis(dna, input_size):
+    def synthesis(dna, input_size, output_size):
         model = Sequential()
         for x in dna.get_chromosomes():
             x_allosome = x.allosome
@@ -61,6 +61,7 @@ class Mitochondrion:
                     model.add(layer)
                 except:
                     print(str(dna))
+        model.add(Mitochondrion.__build_dense(1, 'linear'))
         return model
     
     def random_population(
