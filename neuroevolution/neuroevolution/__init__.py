@@ -4,6 +4,9 @@ from .model import ContinuosGene
 from .model import Chromosome
 from .model import Dna
 from .evolution import party
+from .evolution import __crossover
+from .evolution import pick
+from .evolution import decide
 from .synthesis import Mitochondrion
 from .gymnasium import Gymnasium
 from .utils import random_fitting
