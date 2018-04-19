@@ -5,13 +5,12 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd
-import random
 
 server = Flask('UK schools cluster analysis')
 app = dash.Dash('UK schools cluster analysis', server=server, url_base_pathname='/', csrf_protect=False)
 
 
-df = pd.read_csv('/project/uk-schools-clustering/data/derived/2016-2017_england_clusters.csv')
+df = pd.read_csv('data/derived/2016-2017_england_clusters.csv')
 
 available_indicators = df.columns.tolist()
 available_indicators.remove('urn')
@@ -44,7 +43,7 @@ indicators_description = {
 app.layout = html.Div([
 
     html.Div([
-        
+
         html.Div([
             html.H1('UK Schools cluster analysis'),
             html.Div([
@@ -59,7 +58,7 @@ app.layout = html.Div([
                 html.A('Agglomerative Clustering', href='http://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html', target="_blank"),
                 ' analysis on some features of more than 7000 UK schools.',
                 html.P([
-                    'Census, pupil performances, workforce and other features about schools are collected from the gov.uk Comparing School website.', 
+                    'Census, pupil performances, workforce and other features about schools are collected from the gov.uk Comparing School website.',
                     html.Br(),
                     'Data about deprivation is taken from english indices of deprivation 2015.',
                     html.Br(),
@@ -68,7 +67,7 @@ app.layout = html.Div([
                 html.P('The features available is not exhaustive and might change in further releases.')
             ]),
         ], style={'padding-left': '8em', 'padding-right': '8em', 'padding-bottom': '2em'}),
-        
+
         html.Div([
 
             html.Div([
@@ -85,7 +84,7 @@ app.layout = html.Div([
                 ),
                 html.Div(id='xaxis-expl', style={'width': '96%', 'text-align': 'center', 'margin-top': '0.7em', 'box-shadow': '1px 1px 6px 0px #777'})
             ], style={'width': '100%'}),
-    
+
             html.Div([
                 dcc.Dropdown(
                     id='yaxis-column',
@@ -100,7 +99,7 @@ app.layout = html.Div([
                 ),
                 html.Div(id='yaxis-expl', style={'width': '96%', 'text-align': 'center', 'margin-top': '0.7em', 'box-shadow': '1px 1px 6px 0px #777'})
             ], style={'width': '100%'}),
-            
+
             html.Div([
                 dcc.Dropdown(
                     id='zaxis-column',
@@ -131,14 +130,14 @@ app.title = 'UK Schools analysis with Agglomerative clustering.'
 )
 def update_x_axis_explaination(input_value):
     return indicators_description[input_value]
-    
+
 @app.callback(
     dash.dependencies.Output(component_id='yaxis-expl', component_property='children'),
     [dash.dependencies.Input('yaxis-column', 'value')]
 )
 def update_y_axis_explaination(input_value):
     return indicators_description[input_value]
-    
+
 @app.callback(
     dash.dependencies.Output(component_id='zaxis-expl', component_property='children'),
     [dash.dependencies.Input('zaxis-column', 'value')]
@@ -156,7 +155,7 @@ def update_z_axis_explaination(input_value):
      dash.dependencies.Input('zaxis-type', 'value')])
 def update_graph(xaxis_column_name, yaxis_column_name, zaxis_column_name,
                  xaxis_type, yaxis_type, zaxis_type):
-                     
+
     camera = dict(
         up=dict(x=0, y=0, z=1),
         center=dict(x=0, y=0, z=0),
