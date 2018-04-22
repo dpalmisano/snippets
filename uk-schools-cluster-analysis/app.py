@@ -5,6 +5,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd
+import random
 
 server = Flask('UK schools cluster analysis')
 app = dash.Dash('UK schools cluster analysis', server=server, url_base_pathname='/', csrf_protect=False)
@@ -62,9 +63,12 @@ app.layout = html.Div([
                     html.Br(),
                     'Data about deprivation is taken from english indices of deprivation 2015.',
                     html.Br(),
-                    'The color of a data point shows in which cluster the school belongs to.'
+                    'The color of a data point shows in which cluster the school belongs to.',
+                    html.Br(),
+                    'Code can be found ',
+                    html.A('here', href='https://github.com/dpalmisano/snippets/tree/master/uk-schools-cluster-analysis', target='_blank')
                 ]),
-                html.P('The features available is not exhaustive and might change in further releases.')
+                html.P('The features available is not an exhaustive list and might change in further releases.')
             ]),
         ], style={'padding-left': '8em', 'padding-right': '8em', 'padding-bottom': '2em'}),
 
